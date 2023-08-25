@@ -1,4 +1,4 @@
-# Project Title: Quarkus Microservices Development - Person and Book Services
+# Quarkus Microservices Development
 
 ## Project Description
 This project is about developing a microservices architecture using the Quarkus framework. The focus of the project revolves around two main services: the Person Service and the Book Service. The ultimate goal of this project is to create a system that can manage information about individuals (persons) and books separately, with the potential for continuous development in the future.
