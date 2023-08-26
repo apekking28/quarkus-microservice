@@ -13,12 +13,13 @@ import java.util.List;
 
 @Path("/books")
 @Tag(name = "Book", description = "Book operations")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class BookController {
     @Inject
     BookService bookService;
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Get all books", description = "Retrieve a list of all books")
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
@@ -26,15 +27,12 @@ public class BookController {
 
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Get book by ID", description = "Retrieve book details by its ID")
     public Book getBookById(@PathParam("id") Long id) {
         return bookService.getBookById(id);
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Add a new book", description = "Add a new book to the system")
     public Response addBook(Book newBook) {
         Book addedBook = bookService.addBook(newBook);
@@ -45,8 +43,6 @@ public class BookController {
 
     @PUT
     @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Update a book", description = "Update book details by its ID")
     public Response updateBook(@PathParam("id") Long id, Book updatedBook) {
         Book updated = bookService.updateBook(id, updatedBook);

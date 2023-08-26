@@ -14,6 +14,8 @@ import java.util.List;
 
 @Path("/persons")
 @Tag(name = "Person", description = "Person operations")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class PersonController {
     @Inject
     PersonService personService;
@@ -25,8 +27,6 @@ public class PersonController {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Add new person", description = "Create a new person")
     public Response createPerson(Person person) {
         return personService.createPerson(person);
@@ -35,7 +35,6 @@ public class PersonController {
 
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Get detail person", description = "Detail a person")
     public Person getPersonById(@PathParam("id") Long id) {
        return personService.getPersonById(id);

@@ -22,4 +22,8 @@ public interface RestClientPerson {
     @Path("/persons")
     String createPerson(PersonRequest request);
 
+    @PUT
+    @Path("/persons/{id}")
+    String updatePerson(Long id, PersonRequest request);
+
 }

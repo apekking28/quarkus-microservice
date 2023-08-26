@@ -18,11 +18,12 @@ public class BookService {
     }
 
     public Book getBookById(Long id) {
-        Book existingBook =bookRepository.findById(id);
+        Book existingBook = bookRepository.findById(id);
 
         if (existingBook == null) {
             throw new IllegalArgumentException("Book  with id : " + id + " not found");
         }
+
         return existingBook;
     }
 

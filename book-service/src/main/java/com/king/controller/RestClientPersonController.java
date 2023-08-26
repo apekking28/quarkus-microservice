@@ -22,22 +22,47 @@ public class RestClientPersonController {
     @GET
     @Operation(summary = "Get all persons data from person-service", description = "Get all persons data from person-service")
     public Response getAllPersons() {
-        var response = restClient.getPersons();
-        return Response.ok().entity(response).build();
+        try {
+            var response = restClient.getPersons();
+            return Response.ok().entity(response).build();
+        } catch (Exception e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        }
     }
 
     @GET
     @Path("/{id}")
     @Operation(summary = "Get detail person data from person-service", description = "Get detail person data from person-service")
     public Response getPersonById(@PathParam("id") Long id) {
-        var response = restClient.getPersonById(id);
-        return Response.ok().entity(response).build();
+        try {
+            var response = restClient.getPersonById(id);
+            return Response.ok().entity(response).build();
+        } catch (Exception e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        }
+
     }
 
     @POST
     @Operation(summary = "Add person data to person-service", description = "Add person data to person-service")
-    public Response getPersonById(PersonRequest request) {
-        var response = restClient.createPerson(request);
-        return Response.ok(response).build();
+    public Response addPerson(PersonRequest request) {
+        try {
+            var response = restClient.createPerson(request);
+            return Response.ok(response).build();
+        } catch (Exception e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        }
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Operation(summary = "Update person data to person-service",description = "Update person data to person-service")
+    public Response updatePerson(@PathParam("id")Long id, PersonRequest request) {
+        try {
+            var response = restClient.updatePerson(id,request);
+            return Response.ok().entity(response).build();
+        } catch (Exception e) {
+            return Response.serverError().entity(e.getMessage()).build();
+        }
     }
 }
