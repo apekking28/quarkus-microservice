@@ -1,6 +1,6 @@
 package com.king.controller;
 
-import com.king.dto.PersonRequest;
+import com.king.dto.PersonRequestDTO;
 import com.king.proxy.RestClientPerson;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -45,7 +45,7 @@ public class RestClientPersonController {
 
     @POST
     @Operation(summary = "Add person data to person-service", description = "Add person data to person-service")
-    public Response addPerson(PersonRequest request) {
+    public Response addPerson(PersonRequestDTO request) {
         try {
             var response = restClient.createPerson(request);
             return Response.ok(response).build();
@@ -57,7 +57,7 @@ public class RestClientPersonController {
     @PUT
     @Path("/{id}")
     @Operation(summary = "Update person data to person-service",description = "Update person data to person-service")
-    public Response updatePerson(@PathParam("id")Long id, PersonRequest request) {
+    public Response updatePerson(@PathParam("id")Long id, PersonRequestDTO request) {
         try {
             var response = restClient.updatePerson(id,request);
             return Response.ok().entity(response).build();

@@ -1,6 +1,6 @@
-package org.king.dto;
+package com.king.dto;
 
-public class PersonRequest {
+public class PersonRequestDTO {
 
     private String name;
     private int age;

@@ -1,8 +1,12 @@
-package com.king.dto;
+package org.king.dto;
 
-public class PersonRequest {
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+public class PersonRequestDTO {
+
+    @Schema(example = "Yapek", description = "Name of person")
     private String name;
+    @Schema(example = "12", description = "Age of person")
     private int age;
 
     public String getName() {

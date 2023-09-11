@@ -1,6 +1,6 @@
 package com.king.proxy;
 
-import com.king.dto.PersonRequest;
+import com.king.dto.PersonRequestDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
@@ -20,10 +20,10 @@ public interface RestClientPerson {
 
     @POST
     @Path("/persons")
-    String createPerson(PersonRequest request);
+    String createPerson(PersonRequestDTO request);
 
     @PUT
     @Path("/persons/{id}")
-    String updatePerson(Long id, PersonRequest request);
+    String updatePerson(Long id, PersonRequestDTO request);
 
 }

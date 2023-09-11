@@ -3,7 +3,7 @@ package org.king.proxy;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import org.king.dto.BookRequest;
+import org.king.dto.BookRequestDTO;
 
 @RegisterRestClient(baseUri = "http://localhost:9090")
 @Produces(MediaType.APPLICATION_JSON)
@@ -19,9 +19,9 @@ public interface RestClientBook {
 
     @POST
     @Path("/books")
-    String addBook(BookRequest request);
+    String addBook(BookRequestDTO request);
 
     @PUT
     @Path("/books/{id}")
-    String updateBook(Long id, BookRequest request);
+    String updateBook(Long id, BookRequestDTO request);
 }
