@@ -5,8 +5,10 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.king.dto.PersonRequest;
+import org.king.dto.PersonRequestDTO;
 import org.king.entity.Person;
 import org.king.service.PersonService;
 
@@ -28,8 +30,11 @@ public class PersonController {
 
     @POST
     @Operation(summary = "Add new person", description = "Create a new person")
-    public Response createPerson(Person person) {
-        return personService.createPerson(person);
+    public Response createPerson(PersonRequestDTO personRequestDTO) {
+        Person person = personService.createPerson(personRequestDTO);
+        return Response.status(Response.Status.CREATED)
+                .entity(person)
+                .build();
     }
 
 
@@ -37,14 +42,14 @@ public class PersonController {
     @Path("/{id}")
     @Operation(summary = "Get detail person", description = "Detail a person")
     public Person getPersonById(@PathParam("id") Long id) {
-       return personService.getPersonById(id);
+        return personService.getPersonById(id);
     }
 
     @PUT
     @Path("/{id}")
     @Operation(summary = "Update person", description = "Update a person")
-    public Person updatePerson(@PathParam("id") Long id, PersonRequest request){
-        return personService.updatePerson(id,request);
+    public Person updatePerson(@PathParam("id") Long id, PersonRequestDTO request) {
+        return personService.updatePerson(id, request);
     }
 
     @DELETE

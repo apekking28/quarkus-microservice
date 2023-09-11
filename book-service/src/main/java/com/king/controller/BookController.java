@@ -1,5 +1,6 @@
 package com.king.controller;
 
+import com.king.dto.BookRequestDTO;
 import com.king.service.BookService;
 import com.king.entity.Book;
 import jakarta.inject.Inject;
@@ -34,8 +35,8 @@ public class BookController {
 
     @POST
     @Operation(summary = "Add a new book", description = "Add a new book to the system")
-    public Response addBook(Book newBook) {
-        Book addedBook = bookService.addBook(newBook);
+    public Response addBook(BookRequestDTO bookRequestDTO) {
+        Book addedBook = bookService.addBook(bookRequestDTO);
         return Response.status(Response.Status.CREATED)
             .entity(addedBook)
             .build();
@@ -44,8 +45,8 @@ public class BookController {
     @PUT
     @Path("/{id}")
     @Operation(summary = "Update a book", description = "Update book details by its ID")
-    public Response updateBook(@PathParam("id") Long id, Book updatedBook) {
-        Book updated = bookService.updateBook(id, updatedBook);
+    public Response updateBook(@PathParam("id") Long id, BookRequestDTO bookRequestDTO) {
+        Book updated = bookService.updateBook(id, bookRequestDTO);
         return Response.ok(updated).build();
     }
 

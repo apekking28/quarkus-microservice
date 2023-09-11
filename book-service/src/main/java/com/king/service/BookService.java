@@ -1,5 +1,6 @@
 package com.king.service;
 
+import com.king.dto.BookRequestDTO;
 import com.king.entity.Book;
 import com.king.repository.BookRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -28,17 +29,20 @@ public class BookService {
     }
 
     @Transactional
-    public Book addBook(Book book) {
+    public Book addBook(BookRequestDTO bookRequestDTO) {
+        Book book = new Book();
+        book.setTitle(bookRequestDTO.getTitle());
+        book.setPageCount(bookRequestDTO.getPageCount());
         bookRepository.persist(book);
         return book;
     }
 
     @Transactional
-    public Book updateBook(Long id, Book updatedBook) {
+    public Book updateBook(Long id, BookRequestDTO bookRequestDTO) {
         Book existingBook = getBookById(id);
 
-        existingBook.setTitle(updatedBook.getTitle());
-        existingBook.setPageCount(updatedBook.getPageCount());
+        existingBook.setTitle(bookRequestDTO.getTitle());
+        existingBook.setPageCount(bookRequestDTO.getPageCount());
         return existingBook;
     }
 
