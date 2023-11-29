@@ -14,7 +14,6 @@ import org.king.proxy.RestDummy;
 @Tag(name = "Rest Client Pokemon Controller", description = "Rest client controller")
 public class RestClientPokemonController {
 
-
     @RestClient
     RestDummy restDummy;
 

@@ -5,10 +5,9 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.king.dto.PersonRequestDTO;
+import org.king.dto.request.PersonRequestDTO;
+import org.king.dto.response.PersonWithAddresesResponseDTO;
 import org.king.entity.Person;
 import org.king.service.PersonService;
 
@@ -23,8 +22,8 @@ public class PersonController {
     PersonService personService;
 
     @GET
-    @Operation(summary = "Get all persons", description = "Retrieve a list of all persons")
-    public List<Person> getAllPersons() {
+    @Operation(summary = "Get all persons with addresses", description = "Retrieve a list of all persons")
+    public List<PersonWithAddresesResponseDTO> getAllPersons() {
         return personService.getAllPeople();
     }
 
@@ -40,16 +39,19 @@ public class PersonController {
 
     @GET
     @Path("/{id}")
-    @Operation(summary = "Get detail person", description = "Detail a person")
-    public Person getPersonById(@PathParam("id") Long id) {
+    @Operation(summary = "Get detail person with address", description = "Detail a person")
+    public PersonWithAddresesResponseDTO getPersonById(@PathParam("id") Long id) {
         return personService.getPersonById(id);
     }
 
     @PUT
     @Path("/{id}")
     @Operation(summary = "Update person", description = "Update a person")
-    public Person updatePerson(@PathParam("id") Long id, PersonRequestDTO request) {
-        return personService.updatePerson(id, request);
+    public Response updatePerson(@PathParam("id") Long id, PersonRequestDTO request) {
+        Person person = personService.updatePerson(id, request);
+        return Response.status(Response.Status.OK)
+                .entity(person)
+                .build();
     }
 
     @DELETE
@@ -59,6 +61,16 @@ public class PersonController {
     public Response deletePerson(@PathParam("id") Long id) {
         String message = personService.deletePersonById(id);
         return Response.ok(message).build();
+    }
+
+    @GET
+    @Path("/get")
+    @Operation(summary = "List Person", description = "List person")
+    public Response getPerson() {
+        List<Person> peoples = personService.getPeoples();
+        return Response.status(Response.Status.OK)
+                .entity(peoples)
+                .build();
     }
 
 }

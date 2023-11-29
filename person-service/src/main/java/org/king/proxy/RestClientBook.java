@@ -3,7 +3,7 @@ package org.king.proxy;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import org.king.dto.BookRequestDTO;
+import org.king.dto.request.BookRequestDTO;
 
 @RegisterRestClient(baseUri = "http://localhost:9090")
 @Produces(MediaType.APPLICATION_JSON)

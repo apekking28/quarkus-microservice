@@ -10,10 +10,6 @@
         <module name="person-service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="book-service" target="17" />
-      <module name="person-service" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

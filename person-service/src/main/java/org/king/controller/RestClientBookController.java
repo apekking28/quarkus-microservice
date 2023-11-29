@@ -6,7 +6,7 @@ import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
-import org.king.dto.BookRequestDTO;
+import org.king.dto.request.BookRequestDTO;
 import org.king.proxy.RestClientBook;
 
 @Path("/v1/rest-client/books")
